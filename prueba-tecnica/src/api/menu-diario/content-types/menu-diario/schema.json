@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "menu_diarios",
+  "info": {
+    "singularName": "menu-diario",
+    "pluralName": "menu-diarios",
+    "displayName": "Menu_Diario"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "dia": {
+      "type": "string"
+    },
+    "primero": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::plato.plato"
+    },
+    "segundo": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::plato.plato"
+    },
+    "postre": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::plato.plato"
+    },
+    "precio_fijo": {
+      "type": "decimal"
+    },
+    "sum_precio": {
+      "type": "decimal",
+      "default": 0
+    }
+  }
+}

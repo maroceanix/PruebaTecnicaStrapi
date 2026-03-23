@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "platoes",
+  "info": {
+    "singularName": "plato",
+    "pluralName": "platoes",
+    "displayName": "Plato"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string"
+    },
+    "precio_plato": {
+      "type": "decimal"
+    },
+    "foto_plato": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "tipo": {
+      "type": "enumeration",
+      "enum": [
+        "Primero",
+        "Segundo",
+        "Postre"
+      ]
+    },
+    "alergenos": {
+      "type": "component",
+      "component": "alergenos.alergenos",
+      "repeatable": true
+    }
+  }
+}
