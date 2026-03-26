@@ -43,10 +43,12 @@ export default factories.createCoreController(
                         ctx.send(menus);
                 },
                 async obtenerPlatosSinAlergenos(ctx) {
-                        const { excluir } = ctx.query;
+                        const { excluir_alergenos } = ctx.query;
+                        if (!excluir_alergenos)
+                                return ctx.badRequest("Debes pasar alérgenos a excluir");
                         const menus = await strapi
                                 .service("api::menu-diario.menu-diario")
-                                .obtenerPlatosSinAlergenos(excluir as string); //le paso los alérgenos al método de services
+                                .obtenerPlatosSinAlergenos(excluir_alergenos as string); //le paso los alérgenos al método de services
                         ctx.send(menus);
                 },
         }),

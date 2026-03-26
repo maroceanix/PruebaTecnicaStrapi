@@ -85,9 +85,10 @@ export default factories.createCoreService(
                                 );
                         }
                 },
-                async filtrarMenuSinAlergenos(ctx) {
-                        const { excluir } = ctx.query;
-                        const alergenosExcluir = (excluir as string).split(",");
+                async obtenerPlatosSinAlergenos(excluirString: string) {
+                        const alergenosExcluir = excluirString
+                                .split(",")
+                                .map((alergeno) => alergeno.trim().toLowerCase());
                         const menus = await strapi
                                 .documents("api::menu-diario.menu-diario")
                                 .findMany({
@@ -101,15 +102,18 @@ export default factories.createCoreService(
                                 const platos = [menu.primero, menu.segundo, menu.postre];
 
                                 return !platos.some((plato) =>
-                                        plato?.alergenos?.some((alergeno) =>
-                                                alergenosExcluir.includes(
-                                                        alergeno.nombre_alergeno,
-                                                ),
-                                        ),
+                                        plato?.alergenos?.some((alergeno) => {
+                                                const nombreAlergeno = (
+                                                        alergeno.nombre_alergeno || ""
+                                                ).toLowerCase();
+                                                return alergenosExcluir.includes(
+                                                        nombreAlergeno,
+                                                );
+                                        }),
                                 );
                         });
 
-                        ctx.send(menusFiltrados);
+                        return menusFiltrados;
                 },
         }),
 );

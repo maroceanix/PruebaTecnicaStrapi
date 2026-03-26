@@ -1,6 +1,1 @@
-POST http://localhost:1337/api/menu-diario/agregarImpuesto/gh6csdo3wkjvoxpedcdm3vzr
-Content-Type: application/json
-
-{
-    "impuestoPorcentaje": 21
-}
+GET http://localhost:1337/api/menu-diario/filtrar?precioMin=50&precioMax=60

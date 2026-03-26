@@ -15,5 +15,10 @@ export default {
                         path: "/menu-diario/filtrar",
                         handler: "menu-diario.filtrarMenuPorRangoPrecio",
                 },
+                {
+                        method: "GET",
+                        path: "/menus",
+                        handler: "menu-diario.obtenerPlatosSinAlergenos",
+                },
         ],
 };
