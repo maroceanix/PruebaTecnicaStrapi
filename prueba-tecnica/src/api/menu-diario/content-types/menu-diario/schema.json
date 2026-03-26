@@ -35,6 +35,10 @@
     "sum_precio": {
       "type": "decimal",
       "default": 0
+    },
+    "precio_con_impuesto": {
+      "type": "decimal",
+      "default": 0
     }
   }
 }

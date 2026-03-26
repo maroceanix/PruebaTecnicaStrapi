@@ -11,8 +11,6 @@ export default factories.createCoreService(
                                         where: { id: primerId },
                                 });
 
-                        console.log("primero encontrado:", primero);
-                        console.log("precio primero:", primero?.precio_plato);
                         const segundo = await strapi.db
                                 .query("api::plato.plato")
                                 .findOne({
@@ -38,9 +36,9 @@ export default factories.createCoreService(
                                         populate: ["primero", "segundo", "postre"],
                                 });
                         const sumaBase = await this.calcularSumaBase(
-                                menu.primero.documentId,
-                                menu.segundo.documentId,
-                                menu.postre.documentId,
+                                menu.primero.id,
+                                menu.segundo.id,
+                                menu.postre.id,
                         );
                         const precioConImpuesto =
                                 sumaBase * (1 + impuestoPorcentaje / 100);
@@ -50,7 +48,7 @@ export default factories.createCoreService(
                                 .update({
                                         documentId: documentIdd,
                                         data: {
-                                                sum_precio: precioConImpuesto,
+                                                precio_con_impuesto: precioConImpuesto,
                                         },
                                 });
                 },

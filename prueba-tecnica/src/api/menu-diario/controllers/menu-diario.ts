@@ -8,12 +8,12 @@ export default factories.createCoreController(
         "api::menu-diario.menu-diario",
         ({ strapi }) => ({
                 async agregarImpuesto(ctx) {
-                        const { documentId, impuestoPorcentaje } = ctx.params;
-                        strapi.service("api::menu-diario.menu-diario").agregarImpuesto(
-                                documentId,
-                                impuestoPorcentaje,
-                        );
-                        ctx.send = { message: "Impuesto agregado correctamente" };
+                        const { documentId } = ctx.params;
+                        const { impuestoPorcentaje } = ctx.request.body;
+                        const result = await strapi
+                                .service("api::menu-diario.menu-diario")
+                                .agregarImpuesto(documentId, impuestoPorcentaje);
+                        ctx.send(result);
                 },
 
                 async obtenerPostresMenu(ctx) {

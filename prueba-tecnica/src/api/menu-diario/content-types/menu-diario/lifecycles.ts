@@ -12,7 +12,13 @@ export default {
 
 async function updateMenuTotal(event) {
         const data = event.params.data;
-
+        if (
+                data.precio_con_impuesto !== undefined &&
+                !data.primero &&
+                !data.segundo &&
+                !data.postre
+        )
+                return;
         const primeroId = data.primero?.connect?.[0]?.id ?? data.primero?.set?.[0]?.id;
         const segundoId = data.segundo?.connect?.[0]?.id ?? data.segundo?.set?.[0]?.id;
         const postreId = data.postre?.connect?.[0]?.id ?? data.postre?.set?.[0]?.id;
@@ -23,9 +29,6 @@ async function updateMenuTotal(event) {
                                 where: { documentId: data.documentId },
                                 populate: ["primero", "segundo", "postre"],
                         });
-                console.log("menu.primero:", menu?.primero?.documentId);
-                console.log("menu.segundo:", menu?.segundo?.documentId);
-                console.log("menu.postre:", menu?.postre?.documentId);
 
                 //valido antes que los platos no se repitan, si lanza error no se actualiza el precio
 

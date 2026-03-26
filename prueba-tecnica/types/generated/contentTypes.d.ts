@@ -452,6 +452,8 @@ export interface ApiMenuDiarioMenuDiario extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     postre: Schema.Attribute.Relation<'oneToOne', 'api::plato.plato'>;
+    precio_con_impuesto: Schema.Attribute.Decimal &
+      Schema.Attribute.DefaultTo<0>;
     precio_fijo: Schema.Attribute.Decimal;
     primero: Schema.Attribute.Relation<'oneToOne', 'api::plato.plato'>;
     publishedAt: Schema.Attribute.DateTime;

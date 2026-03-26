@@ -2,7 +2,7 @@ export default {
         routes: [
                 {
                         method: "POST",
-                        path: "/menu-diario/:documentId/:impuestoPorcentaje",
+                        path: "/menu-diario/agregarImpuesto/:documentId",
                         handler: "menu-diario.agregarImpuesto",
                 },
                 {
