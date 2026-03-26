@@ -70,7 +70,7 @@ export default factories.createCoreService(
                         }
                 },
                 async validarPlatosUnicos(primero, segundo, postre) {
-                        //valida que estén los 3 platos
+                        //valida que estén los 3 platos, y que no se repitan
                         if (!primero || !segundo || !postre) {
                                 throw new errors.ValidationError(
                                         "El menú debe tener todos los platos asignados",
